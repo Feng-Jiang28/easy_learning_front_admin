@@ -1,5 +1,9 @@
-const MockAdapter = require('axios-mock-adapter');
-const axios = require('axios');
+import axios from 'axios'
 
-const mock = new MockAdapter(axios, { delayResponse: 0 });
+const MockAdapter = require('axios-mock-adapter');
+
+const instance = axios.create({
+  baseURL:'http://localhost:3000'
+});
+const mock = new MockAdapter(instance, { delayResponse: 0 });
 export default mock;
