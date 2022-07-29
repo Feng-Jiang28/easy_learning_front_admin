@@ -1,5 +1,6 @@
 import './api/auth-api';
 import './api/notifications-api';
+import './flag';
 import history from '@history';
 import mock from './mock';
 
