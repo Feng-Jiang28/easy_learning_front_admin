@@ -83,17 +83,15 @@ class JwtService extends FuseUtils.EventEmitter {
 
   signInWithEmailAndPassword = (email, password) => {
     return new Promise((resolve, reject) => {
-      eduInstance
-        .get(jwtServiceConfig.signIn, {
-          data: {
+      axios // if using post here the data will be sent to back end uding json format
+        .get(jwtServiceConfig.signIn, {data:{
             email,
             password,
+          }
           },
-        })
+        )
         .then((response) => {
-          console.log(response);
           if (response.data.user) {
-
             this.setSession(response.data.access_token);
             resolve(response.data.user);
             this.emit('onLogin', response.data.user);

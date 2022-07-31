@@ -10,16 +10,8 @@ import mockApi from '../mock-api.json';
 let usersApi = mockApi.components.examples.auth_users.value;
 
 /* eslint-disable camelcase */
-let prefix = 'jjj';
 
-if(process.env.MODE === 'REAL'){
-  console.log("hi");
-  prefix = 'DeActive&&'
-}
-
-mock.onGet(`${prefix}/api/auth/sign-in`).reply(async (config) => {
-  console.log(`${prefix}`);
-
+mock.onGet('/api/auth/sign-in').reply(async (config) => {
   const data = JSON.parse(config.data);
   const { email, password } = data;
   const user = _.cloneDeep(usersApi.find((_user) => _user.data.email === email));
